@@ -5,6 +5,7 @@ import com.example.energias.renovables.DTO.UsuarioRequestDTO;
 import com.example.energias.renovables.model.Usuario;
 import com.example.energias.renovables.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // Obtener todos los usuarios y convertirlos en UsuarioDTO
     public List<UsuarioDTO> obtenerTodos() {
@@ -36,7 +40,7 @@ public class UsuarioService {
         Usuario usuario = new Usuario();
         usuario.setNombre(usuarioRequestDTO.getNombre());
         usuario.setEmail(usuarioRequestDTO.getEmail());
-        usuario.setPassword(usuarioRequestDTO.getPassword()); // ⚠️ Debería encriptarse antes de guardarse
+        usuario.setPassword(passwordEncoder.encode(usuarioRequestDTO.getPassword())); // ⚠️ Debería encriptarse antes de guardarse
         usuario.setCreatedAt(java.time.LocalDateTime.now());
 
         Usuario usuarioGuardado = usuarioRepository.save(usuario);
