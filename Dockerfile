@@ -10,7 +10,7 @@
     COPY . .
     
     # Compila el proyecto y genera el JAR en la carpeta target
-    RUN mvn clean package -DskipTests -DfinalName=auth-service
+    RUN mvn clean package -DskipTests
     
     # -----------------------------
     # Etapa 2: Imagen de Producción
