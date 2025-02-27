@@ -1,6 +1,10 @@
 package com.example.energias.renovables.service;
 
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Date;
+
+import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -44,7 +48,7 @@ public class AuthService {
             .claim("name", usuario.getNombre())
             .setIssuedAt(now)
             .setExpiration(expiration)
-            .signWith(SignatureAlgorithm.HS512, jwtSecret)
+            .signWith(SignatureAlgorithm.HS512, jwtSecret.getBytes(StandardCharsets.UTF_8))
             .compact();
 
         UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getId(), usuario.getNombre(), usuario.getEmail(), usuario.getCreatedAt());
