@@ -37,6 +37,10 @@ public class UsuarioService {
 
     // Guardar usuario desde un UsuarioRequestDTO
     public UsuarioDTO guardar(UsuarioRequestDTO usuarioRequestDTO) {
+        if (usuarioRepository.findByEmail(usuarioRequestDTO.getEmail()).isPresent()) {
+            throw new RuntimeException("El usuario ya existe");
+        }
+
         Usuario usuario = new Usuario();
         usuario.setNombre(usuarioRequestDTO.getNombre());
         usuario.setEmail(usuarioRequestDTO.getEmail());
@@ -78,5 +82,11 @@ public class UsuarioService {
     // Eliminar usuario
     public void eliminar(Long id) {
         usuarioRepository.deleteById(id);
+    }
+
+    public UsuarioDTO findByEmail(String email) {
+        return usuarioRepository.findByEmail(email)
+                .map(usuario -> new UsuarioDTO(usuario.getId(), usuario.getNombre(), usuario.getEmail(), usuario.getPassword(), usuario.getCreatedAt()))
+                .orElse(null);
     }
 }

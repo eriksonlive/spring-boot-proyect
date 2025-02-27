@@ -1,0 +1,44 @@
+@host = http://localhost:8081/api
+
+###
+
+PATCH {{ host }}/v1/usuarios/1
+Content-Type: application/json
+
+{
+    "nombre": "Erick aya"
+}
+
+###
+
+POST {{ host }}/auth/login
+Content-Type: application/json
+
+{
+    "email": "motrox@hotmail.it",
+    "password": "Herd307jar$"
+}
+
+###
+
+POST {{ host }}/auth/register
+Content-Type: application/json
+
+{
+    "email": "motrox@hotmail.it",
+    "password": "Herd307jar$"
+}
+
+###
+
+GET {{ host }}/v1/usuarios
+
+###
+
+POST {{ host }}/v1/usuarios
+Content-Type: application/json
+
+{
+    "email": "motrox@hotmail.com",
+    "password": "123456"
+}

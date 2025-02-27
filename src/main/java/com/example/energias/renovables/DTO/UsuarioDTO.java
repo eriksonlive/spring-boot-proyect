@@ -16,9 +16,19 @@ public class UsuarioDTO {
     @NotBlank(message = "El correo es requerido")
     private String email;
 
+    private String password;
+
     private LocalDateTime createdAt;
 
     public UsuarioDTO() {
+    }
+
+    public UsuarioDTO(Long id, String nombre, String email, String password, LocalDateTime createdAt) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.password = password;
+        this.createdAt = createdAt;
     }
 
     public UsuarioDTO(Long id, String nombre, String email, LocalDateTime createdAt) {
@@ -50,6 +60,14 @@ public class UsuarioDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public LocalDateTime getCreatedAt() {

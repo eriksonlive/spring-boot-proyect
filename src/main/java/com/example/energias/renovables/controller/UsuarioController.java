@@ -6,7 +6,6 @@ import com.example.energias.renovables.DTO.UsuarioRequestDTO;
 import com.example.energias.renovables.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +19,6 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public List<UsuarioDTO> obtenerTodos() {
         return usuarioService.obtenerTodos();
     }
