@@ -1,10 +1,7 @@
 package com.example.energias.renovables.service;
 
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.util.Date;
-
-import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
