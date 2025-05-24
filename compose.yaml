@@ -8,3 +8,12 @@ services:
       - 'MYSQL_USER=myuser'
     ports:
       - '3306'
+  mysql2:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=mi_basedatos
+      - MYSQL_ROOT_PASSWORD=1234
+    ports:
+      - '3309:3306'
+    volumes:
+      - ./src/main/resources/base.sql:/docker-entrypoint-initdb.d/base.sql
